@@ -1,10 +1,12 @@
 package ex2;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class College {
     private String name;
-    private ArrayList<Student> students;
+//    private ArrayList<Student> students = new ArrayList();
+//    private Set<Student> students = new LinkedHashSet<>();
+    private Map<Integer, Student> students = new LinkedHashMap<>();
 
     public College(String name) {
         this.name = name;
@@ -15,29 +17,31 @@ public class College {
     }
 
     public void addStudent(Student student){
-        addStudent(student);
+//        students.add(student);
+        students.put(student.getStudentNo(), student);
     }
 
     public void removeStudent(Student student){
-        removeStudent(student);
+//        students.remove(student);
+        students.remove(student.getStudentNo(), student);
     }
     public double calcAverage(){
         int sum = 0;
         int count = 0;
-        for (Student student : students){
+        for (Student student : students.values()){
             for (Integer grade : student.getGrades()) {
+
                 sum += grade;
             }
             count = count + student.getGrades().size();
 
         }
-        double average = sum / count;
-        return average;
+        return sum / count;
     }
 
     private Student findStudent(int studentNo){
         Student correctStudent = null;
-        for (Student student : students){
+        for (Student student : students.values()){
             if (student.getStudentNo() == studentNo) {
                 correctStudent = student;
             }

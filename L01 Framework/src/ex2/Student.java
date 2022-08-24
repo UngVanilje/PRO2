@@ -6,12 +6,11 @@ import java.util.List;
 public class Student {
     private int StudentNo;
     private String name;
-    private List<Integer> grades;
+    private List<Integer> grades = new ArrayList<>();
 
-    public Student(int studentNo, String name, List<Integer> grades) {
+    public Student(int studentNo, String name) {
         StudentNo = studentNo;
         this.name = name;
-        this.grades = grades;
     }
 
     public int getStudentNo() {
@@ -31,11 +30,11 @@ public class Student {
     }
 
     public void addGrade(int grade){
-        addGrade(grade);
+        grades.add(grade);
     }
 
     @Override
     public String toString() {
-        return name + " - " + StudentNo + " - " + grades ;
+        return "\n" + name + " - " + StudentNo + " - " + getGrades();
     }
 }
