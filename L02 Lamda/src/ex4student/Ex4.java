@@ -3,6 +3,7 @@ package ex4student;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Ex4 {
 
@@ -18,22 +19,44 @@ public class Ex4 {
         System.out.println(runners);
         System.out.println();
 
-        // OBS: Throws exception.
-        for (Runner runner : runners) {
-            if (runner.getLapTime() >= 40) {
-                runners.remove(runner);
-            }
-        }
-        System.out.println(runners);
-        System.out.println();
+//        // OBS: Throws exception.
+//        for (Runner runner : runners) {
+//            if (runner.getLapTime() >= 40) {
+//                runners.remove(runner);
+//            }
+//        }
+        System.out.println("-------------------------------------------------------------------------------------");
 
         //A)
         Iterator<Runner> it1 = runners.iterator();
         while (it1.hasNext()) {
             Runner runner = it1.next();
-            runner.
-
+            if (runner.getLapTime() >= 40){
+                it1.remove();
+            }
         }
-        System.out.println();
+        System.out.println(runners);
+        System.out.println("-----------------------------------------------------------------------------------");
+        //D)
+        removeIf(runners, r -> r.getLapTime() >= 40);
+        System.out.println(runners);
+        System.out.println("-----------------------------------------------------------------------------------");
+        //E)
+        runners.removeIf(r -> r.getLapTime() >= 40);
+        System.out.println(runners);
+    }
+
+
+    public static boolean removeIf(List<Runner> runners, Predicate<Runner> filter){
+        boolean yeet = false;
+        Iterator<Runner> it1 = runners.iterator();
+        while (it1.hasNext()) {
+            Runner runner = it1.next();
+                if(filter.test(runner)){
+                    it1.remove();
+                    yeet = true;
+            }
+        }
+        return yeet;
     }
 }
