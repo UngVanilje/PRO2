@@ -9,24 +9,15 @@ public class Ex2 {
     }
 
     public int power(int n, int p) {
-        int result = 0;
-        if (p == 1) {
-            result = 1;
-        } else if (p > 0)
-            result = power(n, p - 1) * n;
-
-        return result;
+        if (p == 0)
+            return 1;
+            else  return power(n, p - 1) * n;
     }
 
     public int power2(int n, int p) {
-        int result = 0;
-        if (p == 1) {
-            result = 1;
-        } else if (p % 2 == 1)
-            result = power(n, p - 1) * n;
-          else
-            result = power2(n * n, p / 2);
-
-        return result;
+        if (p == 0)
+            return 1;
+            else if (p % 2 != 0) return n * power(n, p - 1);
+             else return power2(n * n, p / 2);
     }
 }
