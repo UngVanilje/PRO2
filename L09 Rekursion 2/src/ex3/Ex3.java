@@ -37,8 +37,5 @@ public class Ex3 {
     }
 
     //3.3
-    public int CalcNo2(int n){
-        int result = 0;
 
-    }
 }

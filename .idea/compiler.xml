@@ -6,6 +6,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="L09 Rekursion 2" options="--add-exports jdk.internal.le/jdk.internal.org.jline.reader.impl=ALL-UNNAMED" />
+      <module name="L10  Del" options="--add-exports jdk.internal.le/jdk.internal.org.jline.utils=ALL-UNNAMED" />
     </option>
   </component>
 </project>
