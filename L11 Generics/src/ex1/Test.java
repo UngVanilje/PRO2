@@ -48,7 +48,7 @@ public class Test {
 //        System.out.println("Sorted list: " + persons);
 
         System.out.println("Unsorted list: " + persons);
-        persons.sort((t1,  t2) -> t1.compareTo(t2));
+        persons.sort(Person::compareTo);
         System.out.println("Sorted list: " + persons);
 
 

@@ -1,7 +1,9 @@
 package ex4;
+import ex4student.Ring;
+
 import java.util.ArrayList;
 
-public class ArrayRing<E> implements Ring<E>{
+public class ArrayRing<E> implements Ring<E> {
 
     private final ArrayList<E> items = new ArrayList<>();
     private E currentItem;

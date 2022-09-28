@@ -1,5 +1,6 @@
 package ex4;
 
+import ex4student.Ring;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
