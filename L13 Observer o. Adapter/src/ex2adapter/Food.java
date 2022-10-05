@@ -2,8 +2,8 @@ package ex2adapter;
 
 public class Food extends Item{
 
-    public Food(double netprice, String name){
-        super(netprice, name);
+    public Food(){
+        super();
     }
 
     @Override

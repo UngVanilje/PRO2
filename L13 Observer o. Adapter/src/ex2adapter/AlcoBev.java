@@ -1,11 +1,10 @@
 package ex2adapter;
 
-public class AlcoBev extends Item{
+public class AlcoBev{
     private double theNetprice;
     private String theDescription;
 
-    public AlcoBev(double netprice, String name, double theNetprice, String theDescription) {
-        super(netprice, name);
+    public AlcoBev(double theNetprice, String theDescription) {
         this.theNetprice = theNetprice;
         this.theDescription = theDescription;
     }
@@ -28,9 +27,9 @@ public class AlcoBev extends Item{
 
     public double getVat(){
         double price = 0;
-        if(getNetprice() > 150)
-            return price = getNetprice() * 2.2;
+        if(theNetprice > 150)
+            return price = theNetprice * 2.2;
         else
-            return getNetprice() * 1.8;
+            return theNetprice * 1.8;
     }
 }

@@ -2,8 +2,8 @@ package ex2adapter;
 
 public class ElApplication extends Item {
 
-    public ElApplication(double netprice, String name){
-        super(netprice, name);
+    public ElApplication(){
+        super();
     }
 
 

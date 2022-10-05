@@ -1,13 +1,9 @@
 package ex2adapter;
 
-public class Item {
-    private double netprice;
-    private String name;
+public abstract class Item {
+    private double netprice = 0;
+    private String name = "";
 
-    public Item(double netprice, String name) {
-        this.netprice = netprice;
-        this.name = name;
-    }
 
     public double getNetprice() {
         return netprice;
