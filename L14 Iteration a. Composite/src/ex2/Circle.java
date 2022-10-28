@@ -1,13 +1,15 @@
 package ex2;
-public class Triangle extends FigureComponent {
+
+public class Circle extends FigureComponent{
 
     private String name;
-    private double length;
 
-    public Triangle(String name, double length) {
+    private double radius;
+
+    public Circle(String name, int radius) {
         super(name);
         this.name = name;
-        this.length = length;
+        this.radius = radius;
     }
 
     @Override
@@ -22,6 +24,6 @@ public class Triangle extends FigureComponent {
 
     @Override
     public double calcCirc() {
-        return 3*length;
+        return 2 * Math.PI * radius;
     }
 }

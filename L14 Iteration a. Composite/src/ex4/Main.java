@@ -16,9 +16,11 @@ public class Main {
         list.add(88);
         list.add(99);
 
-        for (Integer integer : list) System.out.println(integer);
-        list.remove(2);
-        list.add(2, 6);
+        Iterator<Integer> it = list.iterator();
+
+        while(it.hasNext())
+            System.out.println(it.next());
+        list.remove(0);
         System.out.println(list);
     }
 }

@@ -1,9 +1,12 @@
 package ex4;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
-/** null is not allowed as a value in the list. */
-public class ArrayedList<T> implements Iterable<T>{
+/**
+ * null is not allowed as a value in the list.
+ */
+public class ArrayedList<T> implements Iterable<T> {
     // array to store the entries in;
     // not-empty entries have indices in [0, size-1]
     private T[] items;
@@ -13,7 +16,9 @@ public class ArrayedList<T> implements Iterable<T>{
 
     private int changes;
 
-    /** Create an ArrayedList with capacity 16. */
+    /**
+     * Create an ArrayedList with capacity 16.
+     */
     public ArrayedList() {
         this(16);
     }
@@ -39,7 +44,9 @@ public class ArrayedList<T> implements Iterable<T>{
         items = temp;
     }
 
-    /** Add the entry at the end of this list. */
+    /**
+     * Add the entry at the end of this list.
+     */
     public void add(T entry) {
         if (size == items.length) this.increaseCapacity();
 
@@ -51,25 +58,25 @@ public class ArrayedList<T> implements Iterable<T>{
     /**
      * Add the entry at the index.
      * Throw IndexOutOfBoundsException,
-     *   if index is not in [0, size()].
+     * if index is not in [0, size()].
      */
     public void add(int index, T entry) {
         //
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
 
-        if (index == size){
+        if (index == size) {
             this.add(entry);
 
-        if (size == items.length)
-            this.increaseCapacity();
+            if (size == items.length)
+                this.increaseCapacity();
 
-        for(int i = size; i > index; i--){
-            items[i] = items[i - 1];
-        }
-        items[index] = entry;
-        size++;
-        changes++;
+            for (int i = size; i > index; i--) {
+                items[i] = items[i - 1];
+            }
+            items[index] = entry;
+            size++;
+            changes++;
 
         }
     }
@@ -77,30 +84,28 @@ public class ArrayedList<T> implements Iterable<T>{
     /**
      * Remove and return the entry at the index.
      * Throw IndexOutOfBoundsException,
-     *   if this list is empty or index is not in [0, size()-1].
+     * if this list is empty or index is not in [0, size()-1].
      */
-    public T remove(int index) {
+    public void remove(int index) {
         T entry = items[index];
         if (index > size - 1) {
             throw new IndexOutOfBoundsException();
         } else {
 
-            entry = items[index];
             for (int i = 0; i < index; i++)
                 items[i] = items[i + 1];
             changes++;
         }
         items[size - 1] = null;
         size--;
-        return entry;
 
     }
 
     /**
      * Replace and return the old entry at the index
-     *   with the specified entry.
+     * with the specified entry.
      * Throw IndexOutOfBoundsException,
-     *   if this list is empty or index is not in [0, size()-1].
+     * if this list is empty or index is not in [0, size()-1].
      */
     public T replace(int index, T entry) {
         if (index < 0 || index > size - 1) {
@@ -115,7 +120,7 @@ public class ArrayedList<T> implements Iterable<T>{
     /**
      * Return the entry at the index.
      * Throw IndexOutOfBoundsException,
-     *   if this list is empty or index is not in [0, size()-1].
+     * if this list is empty or index is not in [0, size()-1].
      */
     public T get(int index) {
         if (index < 0 || index > size - 1) {
@@ -125,7 +130,9 @@ public class ArrayedList<T> implements Iterable<T>{
         return items[index];
     }
 
-    /** Return true, if the entry is in this list. */
+    /**
+     * Return true, if the entry is in this list.
+     */
     public boolean contains(T entry) {
         boolean found = false;
         int i = 0;
@@ -136,17 +143,23 @@ public class ArrayedList<T> implements Iterable<T>{
         return found;
     }
 
-    /** Return the number of entries in this list. */
+    /**
+     * Return the number of entries in this list.
+     */
     public int size() {
         return size;
     }
 
-    /** Return true, if this list is empty. */
+    /**
+     * Return true, if this list is empty.
+     */
     public boolean isEmpty() {
         return size == 0;
     }
 
-    /** Remove all entries from this list. */
+    /**
+     * Remove all entries from this list.
+     */
     public void clear() {
         for (int i = 0; i < size; i++) {
             items[i] = null;
@@ -156,7 +169,7 @@ public class ArrayedList<T> implements Iterable<T>{
 
     /**
      * Return an array containing all entries
-     *   in the same order as in this list.
+     * in the same order as in this list.
      */
     public T[] toArray() {
         @SuppressWarnings("unchecked")
@@ -179,12 +192,11 @@ public class ArrayedList<T> implements Iterable<T>{
         return sb.toString();
 
     }
-    public Iterator<T> iterator(){
+
+    public Iterator<T> iterator() {
         Arraylistinner al = new Arraylistinner();
         return al;
     }
-
-
 
 
     //-------------------------------------------------------------------------
@@ -213,10 +225,12 @@ public class ArrayedList<T> implements Iterable<T>{
                 T t = items[position];
                 position++;
                 return t;
-            } else throw new IndexOutOfBoundsException();
+            }
+            if (changes != innerChanges) {
+                throw new ConcurrentModificationException();
+            }else
+                throw new IndexOutOfBoundsException();
+
         }
-
     }
-
-
 }
